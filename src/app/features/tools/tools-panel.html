@@ -1,0 +1,44 @@
+<section class="glass-panel tools-panel">
+  <header>
+    <div>
+      <span class="eyebrow">{{ 'tools' | translate }}</span>
+      <h2>{{ 'drawingTools' | translate }}</h2>
+    </div>
+    <div class="window-actions">
+      <button type="button" class="window-icon-button" [attr.aria-label]="'close' | translate" [attr.title]="'close' | translate" (click)="closePanel()">
+        <app-icon library="lucide" name="X" size="sm" />
+      </button>
+    </div>
+  </header>
+
+  <div class="tool-grid">
+    @for (tool of tools; track tool.id) {
+      <button
+        type="button"
+        class="tool-button"
+        [class.active]="toolService.activeTool() === tool.id"
+        [attr.aria-label]="tool.label"
+        [attr.title]="tool.label"
+        (click)="setTool(tool.id)"
+      >
+        <app-icon library="lucide" [name]="tool.icon" size="sm" />
+      </button>
+    }
+  </div>
+
+  <div class="tool-actions">
+    <button
+      type="button"
+      class="tool-button"
+      [attr.aria-label]="'addDrawings' | translate"
+      [attr.title]="'addDrawings' | translate"
+      [disabled]="!canSaveDrawings()"
+      (click)="saveDrawingsAsLayer()"
+    >
+      <app-icon library="lucide" name="Save" size="sm" />
+    </button>
+    <button type="button" class="tool-button" [attr.aria-label]="'clearDrawings' | translate" [attr.title]="'clearDrawings' | translate" (click)="clearDrawings()">
+      <app-icon library="lucide" name="Trash2" size="sm" />
+    </button>
+  </div>
+</section>

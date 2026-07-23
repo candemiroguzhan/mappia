@@ -1,0 +1,42 @@
+:host {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: currentColor;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.app-icon {
+  display: inline-block;
+  width: var(--icon-md);
+  height: var(--icon-md);
+  color: currentColor;
+  stroke: currentColor;
+  fill: none;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.app-icon-xs {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+  font-size: var(--icon-xs);
+}
+
+.app-icon-sm {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  font-size: var(--icon-sm);
+}
+
+.app-icon-md {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  font-size: var(--icon-md);
+}
+
+.app-icon-lg {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+  font-size: var(--icon-lg);
+}

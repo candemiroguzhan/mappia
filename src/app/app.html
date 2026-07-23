@@ -1,0 +1,104 @@
+<main class="workbench-shell">
+  <app-map-view [rows]="duckDb.lastResult()?.rows ?? []" />
+
+  <div class="top-slot">
+    <app-top-toolbar />
+  </div>
+
+  <div class="left-slot launcher-slot" [class.panel-open]="layerManagerOpen()">
+    @if (!layerManagerOpen()) {
+      <button type="button" class="launcher-button" [attr.aria-label]="'openLayerManager' | translate" [attr.title]="'layerManager' | translate" (click)="toggleLayerManager()">
+        <app-icon library="fontgis" name="fg-layers" />
+      </button>
+    } @else {
+      <app-layer-manager
+        appDraggableWindow
+        (close)="layerManagerOpen.set(false)"
+        (tableRegistered)="useTable($event)"
+      />
+    }
+  </div>
+
+  <div class="pan-slot launcher-slot">
+    <button
+      type="button"
+      class="launcher-button"
+      [class.active]="toolService.activeTool() === 'pan'"
+      [attr.aria-label]="'panMap' | translate"
+      [attr.title]="'pan' | translate"
+      (click)="activatePan()"
+    >
+      <app-icon library="lucide" name="Hand" />
+    </button>
+  </div>
+
+  <div class="right-slot launcher-slot" [class.panel-open]="toolsOpen()">
+    @if (!toolsOpen()) {
+      <button type="button" class="launcher-button" [attr.aria-label]="'openDrawingTools' | translate" [attr.title]="'drawingTools' | translate" (click)="toggleTools()">
+        <app-icon library="lucide" name="Pencil" />
+      </button>
+    } @else {
+      <app-tools-panel
+        appDraggableWindow
+        (close)="toolsOpen.set(false)"
+      />
+    }
+  </div>
+
+  <div class="measurement-slot launcher-slot" [class.panel-open]="measurementToolsOpen()">
+    @if (!measurementToolsOpen()) {
+      <button type="button" class="launcher-button" [attr.aria-label]="'openMeasurementTools' | translate" [attr.title]="'measurement' | translate" (click)="toggleMeasurementTools()">
+        <app-icon library="lucide" name="Ruler" />
+      </button>
+    } @else {
+      <app-measurement-tools-panel
+        appDraggableWindow
+        (close)="measurementToolsOpen.set(false)"
+      />
+    }
+  </div>
+
+  <div class="ai-slot launcher-slot" [class.panel-open]="aiToolsOpen()">
+    @if (!aiToolsOpen()) {
+      <button type="button" class="launcher-button" [attr.aria-label]="'openAiTools' | translate" [attr.title]="'aiTools' | translate" (click)="toggleAiTools()">
+        <app-icon library="lucide" name="Sparkles" />
+      </button>
+    } @else {
+      <app-ai-tools-panel
+        appDraggableWindow
+        (close)="aiToolsOpen.set(false)"
+      />
+    }
+  </div>
+
+  <div class="fit-slot launcher-slot">
+    <button type="button" class="launcher-button" [attr.aria-label]="'fitView' | translate" [attr.title]="'fitView' | translate" (click)="fitView()">
+      <app-icon library="lucide" name="ScanSearch" />
+    </button>
+  </div>
+
+  <div class="reset-slot launcher-slot">
+    <button type="button" class="launcher-button" [attr.aria-label]="'resetView' | translate" [attr.title]="'resetView' | translate" (click)="resetView()">
+      <app-icon library="lucide" name="RotateCcw" />
+    </button>
+  </div>
+
+  <div class="sql-slot" appDraggableWindow>
+    <app-sql-tool-window
+      [sql]="sql()"
+      [busy]="duckDb.busy() || duckDb.initializing()"
+      [history]="duckDb.getHistory()"
+      [result]="duckDb.lastResult()"
+      [error]="duckDb.lastError()"
+      [tables]="duckDb.tables()"
+      [spatialAvailable]="duckDb.spatialAvailable()"
+      [schemaContext]="duckDb.schemaContext()"
+      (sqlChange)="sql.set($event)"
+      (run)="runQuery()"
+    />
+  </div>
+
+  <div class="status-slot">
+    <app-status-bar />
+  </div>
+</main>

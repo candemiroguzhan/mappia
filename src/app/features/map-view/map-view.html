@@ -1,0 +1,11 @@
+<section class="map-shell" [class.drawing-mode]="drawingMode()">
+  <div #mapContainer class="map"></div>
+
+  @if (mapError()) {
+    <div class="map-error glass-panel">{{ mapError() }}</div>
+  }
+
+  @if (measurement()) {
+    <div class="measure-tooltip glass-panel">{{ measurement() }}</div>
+  }
+</section>

@@ -1,0 +1,7 @@
+<section class="glass-panel status-bar">
+  <span><app-icon library="lucide" name="MapPinned" size="xs" /> Lon {{ mapStatus.longitude() === null ? '-' : (mapStatus.longitude() | number: '1.5-5') }}</span>
+  <span><app-icon library="lucide" name="LocateFixed" size="xs" /> Lat {{ mapStatus.latitude() === null ? '-' : (mapStatus.latitude() | number: '1.5-5') }}</span>
+  <span><app-icon library="lucide" name="Gauge" size="xs" /> Zoom {{ mapStatus.zoom() === null ? '-' : (mapStatus.zoom() | number: '1.1-1') }}</span>
+  <span><app-icon library="lucide" name="MousePointer2" size="xs" /> {{ toolService.activeTool() }}</span>
+  <span><app-icon library="fontgis" name="fg-layers" size="xs" /> {{ layerStore.visibleLayers().length }} {{ 'visible' | translate }} / {{ layerStore.layers().length }} {{ 'layerCount' | translate }}</span>
+</section>

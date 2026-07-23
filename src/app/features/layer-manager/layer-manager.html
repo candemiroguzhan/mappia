@@ -1,0 +1,116 @@
+<section class="glass-panel layer-manager">
+  <header>
+    <div>
+      <span class="eyebrow">{{ 'layers' | translate }}</span>
+      <h2>{{ 'layerManager' | translate }}</h2>
+    </div>
+    <div class="window-actions">
+      <span class="count">{{ layerStore.layers().length }}</span>
+      <button type="button" class="window-icon-button" [attr.aria-label]="'close' | translate" [attr.title]="'close' | translate" (click)="close.emit()">
+        <app-icon library="lucide" name="X" size="sm" />
+      </button>
+    </div>
+  </header>
+
+  <app-upload (tableRegistered)="tableRegistered.emit($event)" />
+
+  @if (layerStore.layers().length === 0) {
+    <p class="empty">{{ 'empty.layers' | translate }}</p>
+  }
+
+  <div class="layer-list">
+    @for (layer of layerStore.layers(); track layer.id) {
+      <article class="layer-row" [class.hidden]="!layer.visible">
+        <div class="layer-main">
+          <button type="button" class="icon-button" [attr.aria-label]="layer.visible ? ('hideLayer' | translate) : ('showLayer' | translate)" (click)="toggleLayer(layer.id)">
+            <app-icon library="lucide" [name]="layer.visible ? 'Eye' : 'EyeOff'" size="sm" />
+          </button>
+          <app-icon [library]="layerIcon(layer).library" [name]="layerIcon(layer).name" size="sm" />
+          <div class="layer-name">
+            <input [value]="layer.name" (change)="renameLayer(layer.id, $event)" />
+            <span>{{ layer.fileName ?? layer.tableName ?? ('workspaceLayer' | translate) }}</span>
+          </div>
+          <span class="badge">{{ layer.type }}</span>
+        </div>
+
+        <div class="layer-controls">
+          <label>
+            <span>{{ layer.opacity | number: '1.0-0' }}</span>
+            <input type="range" min="0" max="1" step="0.05" [value]="layer.opacity" (input)="setOpacity(layer.id, $event)" />
+          </label>
+          <div class="style-controls" [attr.aria-label]="'layerStyleControls' | translate">
+            <div class="color-options">
+              @for (color of colorOptions; track color) {
+                <button
+                  type="button"
+                  class="swatch"
+                  [class.active]="layer.color === color"
+                  [style.background]="color"
+                  [attr.aria-label]="('setLayerColor' | translate) + ' ' + color"
+                  [attr.title]="color"
+                  (click)="setColor(layer.id, color)"
+                ></button>
+              }
+            </div>
+            <div class="icon-options">
+              @for (icon of iconOptions; track icon.name) {
+                <button
+                  type="button"
+                  class="icon-choice"
+                  [class.active]="layer.icon === icon.name"
+                  [attr.aria-label]="('setLayerIcon' | translate) + ' ' + icon.label"
+                  [attr.title]="icon.label"
+                  (click)="setIcon(layer.id, icon.name)"
+                >
+                  <app-icon [library]="icon.library" [name]="icon.name" size="xs" />
+                </button>
+              }
+            </div>
+          </div>
+          <button type="button" class="glass-button compact" (click)="zoomToLayer(layer.id)">
+            <app-icon library="lucide" name="LocateFixed" size="sm" />
+            <span>{{ 'zoom' | translate }}</span>
+          </button>
+          @if (canExport(layer)) {
+            <button type="button" class="glass-button compact" (click)="exportLayer(layer)">
+              <app-icon library="lucide" name="Download" size="sm" />
+              <span>{{ 'export' | translate }}</span>
+            </button>
+          }
+          <button type="button" class="glass-button compact danger" (click)="removeLayer(layer.id)">
+            <app-icon library="lucide" name="Trash2" size="sm" />
+            <span>{{ 'remove' | translate }}</span>
+          </button>
+        </div>
+
+        @if (layer.featureCount !== undefined) {
+          <small>{{ layer.featureCount | number }} {{ 'features' | translate }}</small>
+        }
+
+        @if (layer.type === 'cog' && layer.metadata) {
+          <div class="cog-details">
+            @if (layer.metadata['bbox']) {
+              <span class="bbox" title="BBox">BBox {{ layer.metadata['bbox'] }}</span>
+            }
+            <div class="metadata-popover">
+              <button type="button" class="icon-button metadata-trigger" [attr.aria-label]="'metadata' | translate" [attr.title]="'metadata' | translate">
+                <app-icon library="lucide" name="Info" size="xs" />
+              </button>
+              <dl class="metadata">
+                <div><dt>{{ 'size' | translate }}</dt><dd>{{ layer.metadata['width'] }} x {{ layer.metadata['height'] }}</dd></div>
+                <div><dt>{{ 'bands' | translate }}</dt><dd>{{ layer.metadata['bandCount'] }}</dd></div>
+                <div><dt>{{ 'file' | translate }}</dt><dd>{{ formatBytes(metadataNumber(layer.metadata['fileSize'])) }}</dd></div>
+                @if (layer.metadata['projection']) {
+                  <div><dt>CRS</dt><dd>{{ layer.metadata['projection'] }}</dd></div>
+                }
+              </dl>
+            </div>
+          </div>
+          @if (layer.metadata['warning']) {
+            <p class="warning">{{ layer.metadata['warning'] }}</p>
+          }
+        }
+      </article>
+    }
+  </div>
+</section>
