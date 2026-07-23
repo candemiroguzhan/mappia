@@ -13,7 +13,6 @@ A modern browser-native geospatial workbench for loading, querying, inspecting a
 
 Built with Angular standalone components, Signals, DuckDB WASM, DuckDB Spatial, MapLibre GL JS, Monaco Editor and geotiff.js, Mappia provides a lightweight GIS environment without requiring a dedicated backend service.
 
-> **Note:** Badge URLs assume the GitHub repository is `https://github.com/candemiroguzhan/mappia`. Update the badge URLs if the repository uses a different name.
 
 ## ✨ Features
 
