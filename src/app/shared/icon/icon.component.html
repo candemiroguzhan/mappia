@@ -1,0 +1,14 @@
+@if (library() === 'lucide') {
+  <svg
+    [class]="iconClass()"
+    [lucideIcon]="lucideName()"
+    [attr.aria-hidden]="label() ? null : 'true'"
+    [attr.aria-label]="label()"
+  ></svg>
+} @else {
+  <span
+    [class]="fontGisClass()"
+    [attr.aria-hidden]="label() ? null : 'true'"
+    [attr.aria-label]="label()"
+  ></span>
+}

@@ -1,0 +1,127 @@
+{
+  "hash": "32de0789",
+  "configHash": "cafad867",
+  "lockfileHash": "03d76aca",
+  "browserHash": "e7cb3d2e",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "ebe79eb1",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "a2131379",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "23586be4",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "67dcbea2",
+      "needsInterop": false
+    },
+    "@angular/platform-browser/animations": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/animations.mjs",
+      "file": "@angular_platform-browser_animations.js",
+      "fileHash": "ed11da34",
+      "needsInterop": false
+    },
+    "@duckdb/duckdb-wasm": {
+      "src": "../../../../../../node_modules/@duckdb/duckdb-wasm/dist/duckdb-browser.mjs",
+      "file": "@duckdb_duckdb-wasm.js",
+      "fileHash": "b0a1f997",
+      "needsInterop": false
+    },
+    "@lucide/angular": {
+      "src": "../../../../../../node_modules/@lucide/angular/fesm2022/lucide-angular.mjs",
+      "file": "@lucide_angular.js",
+      "fileHash": "d8c9d6f1",
+      "needsInterop": false
+    },
+    "geotiff": {
+      "src": "../../../../../../node_modules/geotiff/dist-module/geotiff.js",
+      "file": "geotiff.js",
+      "fileHash": "27860173",
+      "needsInterop": false
+    },
+    "maplibre-gl": {
+      "src": "../../../../../../node_modules/maplibre-gl/dist/maplibre-gl.js",
+      "file": "maplibre-gl.js",
+      "fileHash": "abc879b1",
+      "needsInterop": true
+    },
+    "ngx-monaco-editor-v2": {
+      "src": "../../../../../../node_modules/ngx-monaco-editor-v2/fesm2022/ngx-monaco-editor-v2.mjs",
+      "file": "ngx-monaco-editor-v2.js",
+      "fileHash": "a6598d3f",
+      "needsInterop": false
+    },
+    "zone.js": {
+      "src": "../../../../../../node_modules/zone.js/fesm2015/zone.js",
+      "file": "zone__js.js",
+      "fileHash": "5f9b5165",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "lerc-4GGBMYAJ": {
+      "file": "lerc-4GGBMYAJ.js"
+    },
+    "zstd-QOI6QSOD": {
+      "file": "zstd-QOI6QSOD.js"
+    },
+    "webimage-EONKMANJ": {
+      "file": "webimage-EONKMANJ.js"
+    },
+    "raw-S4VDNVRQ": {
+      "file": "raw-S4VDNVRQ.js"
+    },
+    "lzw-C6AYPFQO": {
+      "file": "lzw-C6AYPFQO.js"
+    },
+    "jpeg-HFJLOG77": {
+      "file": "jpeg-HFJLOG77.js"
+    },
+    "deflate-JJFFMGQX": {
+      "file": "deflate-JJFFMGQX.js"
+    },
+    "chunk-JSHRNBOQ": {
+      "file": "chunk-JSHRNBOQ.js"
+    },
+    "packbits-6LLYPQUJ": {
+      "file": "packbits-6LLYPQUJ.js"
+    },
+    "chunk-7KYABZPJ": {
+      "file": "chunk-7KYABZPJ.js"
+    },
+    "chunk-UIA4LIVF": {
+      "file": "chunk-UIA4LIVF.js"
+    },
+    "chunk-33PYFODP": {
+      "file": "chunk-33PYFODP.js"
+    },
+    "chunk-SSRSUUCV": {
+      "file": "chunk-SSRSUUCV.js"
+    },
+    "chunk-63IHVQOV": {
+      "file": "chunk-63IHVQOV.js"
+    },
+    "chunk-HIDBO2PB": {
+      "file": "chunk-HIDBO2PB.js"
+    },
+    "chunk-C46DD3QN": {
+      "file": "chunk-C46DD3QN.js"
+    },
+    "chunk-KWSTWQNB": {
+      "file": "chunk-KWSTWQNB.js"
+    }
+  }
+}

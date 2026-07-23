@@ -1,0 +1,214 @@
+@import "font-gis/css/font-gis.css";
+
+:root {
+  color-scheme: dark;
+  --text-primary: #e8edf3;
+  --text-secondary: rgba(232, 237, 243, 0.66);
+  --accent-color: #95eadf;
+  --icon-xs: 14px;
+  --icon-sm: 18px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #111418;
+  color: var(--text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+body.theme-night {
+  color-scheme: dark;
+}
+
+body.theme-day {
+  --text-primary: #142430;
+  --text-secondary: rgba(20, 36, 48, 0.66);
+  --accent-color: #17796f;
+  color-scheme: light;
+  background: #edf3f7;
+  color: #12202a;
+}
+
+body.theme-day .workbench-shell {
+  background: #dfe8ee;
+  color: #12202a;
+}
+
+body.theme-day .glass-panel,
+body.theme-day .launcher-button,
+body.theme-day .window-icon-button {
+  border-color: rgba(15, 32, 44, 0.14);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(236, 244, 248, 0.58)),
+    rgba(255, 255, 255, 0.52);
+  color: #142430;
+}
+
+body.theme-day .glass-button {
+  border-color: rgba(15, 32, 44, 0.13);
+  background: rgba(255, 255, 255, 0.62);
+  color: #142430;
+}
+
+body.theme-day .layer-row,
+body.theme-day .import-popover,
+body.theme-day .contact-dropdown,
+body.theme-day .drop-zone,
+body.theme-day .icon-button,
+body.theme-day .tool-button,
+body.theme-day .icon-choice {
+  border-color: rgba(15, 32, 44, 0.12);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text-primary);
+}
+
+body.theme-day input,
+body.theme-day textarea {
+  color: var(--text-primary);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.mono {
+  font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 35px;
+  background:
+    linear-gradient(145deg, rgba(23, 31, 40, 0.74), rgba(13, 18, 24, 0.52)),
+    rgba(17, 22, 28, 0.54);
+  box-shadow:
+    0 24px 72px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px) saturate(1.35);
+  padding: 14px;
+}
+
+.glass-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: currentColor;
+  padding: 0 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    background 200ms ease,
+    box-shadow 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease,
+    transform 200ms ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 10px 28px rgba(149, 234, 223, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.floating-toolbar,
+.tool-window {
+  pointer-events: auto;
+}
+
+.launcher-button,
+.window-icon-button {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background:
+    linear-gradient(145deg, rgba(23, 31, 40, 0.74), rgba(13, 18, 24, 0.52)),
+    rgba(17, 22, 28, 0.54);
+  color: var(--text-primary);
+  padding: 0;
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(1.25);
+  transition:
+    background 200ms ease,
+    box-shadow 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.launcher-button:hover,
+.window-icon-button:hover {
+  background:
+    linear-gradient(145deg, rgba(31, 42, 52, 0.82), rgba(18, 25, 32, 0.62)),
+    rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 12px 32px rgba(149, 234, 223, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.launcher-button.active,
+.window-icon-button.active {
+  border-color: rgba(149, 234, 223, 0.56);
+  background:
+    linear-gradient(145deg, rgba(51, 151, 139, 0.42), rgba(18, 25, 32, 0.62)),
+    rgba(149, 234, 223, 0.1);
+  color: var(--text-primary);
+}
+
+.launcher-button:active,
+.window-icon-button:active {
+  transform: scale(0.98);
+}
+
+.window-icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.font-gis,
+[class^="fg-"],
+[class*=" fg-"] {
+  line-height: 1;
+}

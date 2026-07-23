@@ -1,0 +1,66 @@
+.measurement-tools-panel {
+  width: min(188px, calc(100vw - 32px));
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+
+  h2 {
+    margin: 2px 0 0;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+}
+
+.window-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.eyebrow {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.tool-grid,
+.tool-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.tool-grid {
+  grid-template-columns: repeat(3, 44px);
+}
+
+.tool-actions {
+  grid-template-columns: 44px;
+  margin-top: 12px;
+}
+
+.tool-button {
+  display: inline-grid;
+  width: 44px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  font-size: 19px;
+  padding: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.active {
+  border-color: rgba(149, 234, 223, 0.55);
+  background: rgba(51, 151, 139, 0.38);
+  color: var(--text-primary);
+}

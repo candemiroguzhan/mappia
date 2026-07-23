@@ -1,0 +1,1 @@
+import {I as Il}from'./chunk-lHij_yme.js';import {g}from'./main-U4O72SA3.js';var o=class extends g{decodeBlock(t){return Il(new Uint8Array(t)).buffer}};export{o as default};

@@ -1,0 +1,46 @@
+<section class="results">
+  <header>
+    <div>
+      <h2>{{ 'results' | translate }}</h2>
+      @if (result(); as current) {
+        <span>{{ current.totalRows | number }} {{ 'rows' | translate }}{{ current.truncated ? ' / ' + ('showingFirst1000' | translate) : '' }}</span>
+      } @else {
+        <span>{{ 'noQuery' | translate }}</span>
+      }
+    </div>
+  </header>
+
+  @if (busy()) {
+    <div class="state">{{ 'loadingResults' | translate }}</div>
+  } @else if (result()?.error || error()) {
+    <div class="state error">{{ result()?.error?.message ?? error()?.message }}</div>
+  } @else if (!result()) {
+    <div class="state">{{ 'uploadAndRun' | translate }}</div>
+  } @else if (result()?.rows?.length === 0) {
+    <div class="state">{{ 'noRows' | translate }}</div>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            @for (column of result()!.columns; track column.name) {
+              <th>
+                <span>{{ column.name }}</span>
+                <code>{{ column.type }}</code>
+              </th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of result()!.rows; track $index) {
+            <tr>
+              @for (column of result()!.columns; track column.name) {
+                <td>{{ formatCell(row[column.name]) }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

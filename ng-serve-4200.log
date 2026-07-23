@@ -1,0 +1,84 @@
+
+> mappia@0.1.0 start
+> ng serve --host 0.0.0.0 --port 4200
+
+> Building...
+√ Building...
+Initial chunk files | Names         |  Raw size
+main.js             | main          | 294.27 kB | 
+styles.css          | styles        |  97.48 kB | 
+
+                    | Initial total | 391.76 kB
+
+Application bundle generation complete. [3.999 seconds] - 2026-07-20T21:01:08.310Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+[2m00:01:08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because lockfile has changed
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.3:[1m4200[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.17.240.1:[1m4200[22m/[39m
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names |  Raw size
+main.js             | main  | 294.27 kB | 
+
+Application bundle generation complete. [0.635 seconds] - 2026-07-20T21:06:22.936Z
+
+Component update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names |  Raw size
+main.js             | main  | 294.27 kB | 
+
+Application bundle generation complete. [0.222 seconds] - 2026-07-20T21:06:31.041Z
+
+Component update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names |  Raw size
+main.js             | main  | 294.27 kB | 
+
+Application bundle generation complete. [0.195 seconds] - 2026-07-20T21:06:39.506Z
+
+Component update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names |  Raw size
+main.js             | main  | 294.27 kB | 
+
+Application bundle generation complete. [0.375 seconds] - 2026-07-20T21:06:42.836Z
+
+Component update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names  | Raw size
+styles.css          | styles | 97.48 kB | 
+
+Application bundle generation complete. [0.148 seconds] - 2026-07-20T21:11:06.497Z
+
+Stylesheet update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names  | Raw size
+styles.css          | styles | 97.48 kB | 
+
+Application bundle generation complete. [0.116 seconds] - 2026-07-20T21:11:33.705Z
+
+Stylesheet update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names  | Raw size
+styles.css          | styles | 97.48 kB | 
+
+Application bundle generation complete. [0.073 seconds] - 2026-07-20T21:13:01.483Z
+
+Stylesheet update sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names  | Raw size
+styles.css          | styles | 97.48 kB | 
+
+Application bundle generation complete. [0.093 seconds] - 2026-07-20T21:13:12.492Z
+
+Stylesheet update sent to client(s).

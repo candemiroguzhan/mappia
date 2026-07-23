@@ -1,0 +1,1 @@
+import {g}from'./main-ELA67FKA.js';var o=class extends g{decodeBlock(r){return r}};export{o as default};

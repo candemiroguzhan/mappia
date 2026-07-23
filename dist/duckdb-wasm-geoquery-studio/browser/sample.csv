@@ -1,0 +1,5 @@
+id,name,category,value,wkt
+1,Istanbul,city,1540,"POINT (28.9784 41.0082)"
+2,Ankara,city,930,"POINT (32.8597 39.9334)"
+3,Izmir,city,860,"POINT (27.1428 38.4237)"
+4,Bosphorus,line,120,"LINESTRING (28.95 41.02, 29.04 41.08, 29.11 41.12)"

@@ -1,0 +1,61 @@
+<header class="glass-panel floating-toolbar">
+  <div class="brand">
+    <img src="./assets/logo.png" alt="mappia Logo" class="brand-logo" />
+    <div class="brand-text">
+      <strong>mappia</strong>
+      <span>{{ 'app.subtitle' | translate }}</span>
+    </div>
+  </div>
+
+  <nav class="toolbar-actions">
+    <div class="language-switcher" role="group" [attr.aria-label]="'language' | translate">
+      @for (language of languageService.languages; track language.code) {
+        <button
+          type="button"
+          class="language-option"
+          [class.active]="languageService.currentLanguage() === language.code"
+          [attr.aria-pressed]="languageService.currentLanguage() === language.code"
+          (click)="languageService.setLanguage(language.code)"
+        >
+          {{ language.label }}
+        </button>
+      }
+    </div>
+
+    <button
+      class="glass-button icon-only"
+      type="button"
+      [attr.aria-label]="themeService.theme() === 'night' ? ('aria.switchToDay' | translate) : ('aria.switchToNight' | translate)"
+      [attr.title]="themeService.theme() === 'night' ? ('theme.day' | translate) : ('theme.night' | translate)"
+      (click)="themeService.toggleTheme()"
+    >
+      <app-icon library="lucide" [name]="themeService.theme() === 'night' ? 'Moon' : 'Sun'" />
+    </button>
+
+    <div class="contact-menu-wrapper">
+      <button
+        class="glass-button icon-only"
+        type="button"
+        [attr.aria-label]="'aria.openContact' | translate"
+        [attr.title]="'contact' | translate"
+        (click)="contactOpen.update((value) => !value)"
+      >
+        <app-icon library="lucide" name="Mail" />
+      </button>
+
+      @if (contactOpen()) {
+        <div class="contact-dropdown">
+          <a href="https://github.com/candemiroguzhan" [attr.aria-label]="'aria.github' | translate" title="GitHub" (click)="contactOpen.set(false)">
+            <app-icon library="lucide" name="Github" size="sm" />
+          </a>
+          <a href="https://www.linkedin.com/in/candemiroguzhan" [attr.aria-label]="'aria.linkedin' | translate" title="LinkedIn" (click)="contactOpen.set(false)">
+            <app-icon library="lucide" name="Linkedin" size="sm" />
+          </a>
+          <a href="mailto:candemiroguzhan@outlook.com" [attr.aria-label]="'aria.email' | translate" title="Email" (click)="contactOpen.set(false)">
+            <app-icon library="lucide" name="Mail" size="sm" />
+          </a>
+        </div>
+      }
+    </div>
+  </nav>
+</header>

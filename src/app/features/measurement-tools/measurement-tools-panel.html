@@ -1,0 +1,34 @@
+<section class="glass-panel measurement-tools-panel">
+  <header>
+    <div>
+      <span class="eyebrow">{{ 'tools' | translate }}</span>
+      <h2>{{ 'measurement' | translate }}</h2>
+    </div>
+    <div class="window-actions">
+      <button type="button" class="window-icon-button" [attr.aria-label]="'close' | translate" [attr.title]="'close' | translate" (click)="closePanel()">
+        <app-icon library="lucide" name="X" size="sm" />
+      </button>
+    </div>
+  </header>
+
+  <div class="tool-grid">
+    @for (tool of tools; track tool.id) {
+      <button
+        type="button"
+        class="tool-button"
+        [class.active]="toolService.activeTool() === tool.id"
+        [attr.aria-label]="tool.label"
+        [attr.title]="tool.label"
+        (click)="setTool(tool.id)"
+      >
+        <app-icon library="lucide" [name]="tool.icon" size="sm" />
+      </button>
+    }
+  </div>
+
+  <div class="tool-actions">
+    <button type="button" class="tool-button" [attr.aria-label]="'clearMeasurement' | translate" [attr.title]="'clearMeasurement' | translate" (click)="clearMeasurement()">
+      <app-icon library="lucide" name="Trash2" size="sm" />
+    </button>
+  </div>
+</section>

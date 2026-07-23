@@ -1,0 +1,47 @@
+<section class="upload">
+  <button type="button" class="glass-button import-trigger" (click)="toggleImportMenu()">
+    <app-icon library="lucide" name="Upload" size="sm" />
+    <span>{{ 'import' | translate }}</span>
+  </button>
+
+  @if (importMode() !== 'closed') {
+    <div class="import-popover">
+      <div class="mode-tabs">
+        <button type="button" [class.active]="importMode() === 'pc'" (click)="setImportMode('pc')">{{ 'loadFromPc' | translate }}</button>
+        <button type="button" [class.active]="importMode() === 'url'" (click)="setImportMode('url')">{{ 'loadFromUrl' | translate }}</button>
+      </div>
+
+      @if (importMode() === 'pc') {
+        <label
+          class="drop-zone"
+          [class.active]="dragActive()"
+          (dragover)="setDragState($event, true)"
+          (dragleave)="setDragState($event, false)"
+          (drop)="onDrop($event)"
+        >
+          <input type="file" accept=".csv,.parquet,.geoparquet,.geojson,.json,.tif,.tiff" multiple (change)="onInputChange($event)" />
+          <app-icon library="lucide" name="Upload" />
+          <strong>{{ 'loadFromPc' | translate }}</strong>
+          <span>CSV, Parquet, GeoParquet, GeoJSON, COG</span>
+        </label>
+      }
+
+      @if (importMode() === 'url') {
+        <div class="remote-cog">
+          <app-icon library="lucide" name="Cloud" />
+          <input
+            type="url"
+            [attr.placeholder]="'remoteCogUrl' | translate"
+            [value]="remoteCogUrl()"
+            (input)="setRemoteCogUrl($event)"
+          />
+          <button type="button" class="glass-button" (click)="loadRemoteCog()">{{ 'load' | translate }}</button>
+        </div>
+      }
+
+      @if (message()) {
+        <p class="message">{{ message() }}</p>
+      }
+    </div>
+  }
+</section>

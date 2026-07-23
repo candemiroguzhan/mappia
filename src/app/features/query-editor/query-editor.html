@@ -1,0 +1,28 @@
+<section class="query-editor">
+  <header>
+    <div>
+      <h2>SQL</h2>
+      <span>Ctrl + Enter</span>
+    </div>
+    <div class="actions">
+      <select [attr.aria-label]="'queryHistory' | translate" (change)="onHistoryChange($event)">
+        <option value="">{{ 'history' | translate }}</option>
+        @for (entry of history(); track entry) {
+          <option [value]="entry">{{ entry }}</option>
+        }
+      </select>
+      <button type="button" [disabled]="busy()" (click)="run.emit()">
+        <app-icon library="lucide" [name]="busy() ? 'LoaderCircle' : 'Play'" size="sm" />
+        <span>{{ busy() ? ('running' | translate) : ('run' | translate) }}</span>
+      </button>
+    </div>
+  </header>
+
+  <ngx-monaco-editor
+    class="editor"
+    [options]="editorOptions"
+    [ngModel]="sql()"
+    (ngModelChange)="sqlChange.emit($event)"
+    (onInit)="onEditorInit($event)"
+  />
+</section>

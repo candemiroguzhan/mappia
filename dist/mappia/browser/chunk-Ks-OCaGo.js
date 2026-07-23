@@ -1,0 +1,1 @@
+import {g}from'./main-U4O72SA3.js';var o=class extends g{decodeBlock(r){return r}};export{o as default};

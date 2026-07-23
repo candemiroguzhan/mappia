@@ -1,0 +1,49 @@
+@if (toolService.sqlToolOpen()) {
+  <section class="glass-panel tool-window sql-window">
+    <header>
+      <div>
+        <span class="eyebrow">{{ 'aiTools' | translate }}</span>
+        <h2>{{ 'sqlQueryTool' | translate }}</h2>
+      </div>
+      <div class="window-actions">
+        <button type="button" class="glass-button compact" (click)="close()">
+          <app-icon library="lucide" name="X" size="sm" />
+          <span>{{ 'close' | translate }}</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="content">
+        <section class="editor-pane">
+          <app-natural-language-query [schema]="schemaContext()" (sqlGenerated)="sqlChange.emit($event)" />
+          <app-query-editor
+            [sql]="sql()"
+            [busy]="busy()"
+            [history]="history()"
+            (sqlChange)="sqlChange.emit($event)"
+            (run)="run.emit()"
+          />
+        </section>
+
+        <section class="result-pane">
+          <div class="result-actions">
+            <span>{{ featureCount() }} {{ 'mapReadyFeatures' | translate }}</span>
+            <button type="button" class="glass-button compact" [disabled]="featureCount() === 0" (click)="addResultAsLayer()">
+              <app-icon library="lucide" name="Save" size="sm" />
+              <span>{{ 'addResultAsLayer' | translate }}</span>
+            </button>
+          </div>
+          <app-results-table [result]="result()" [busy]="busy()" [error]="error()" />
+        </section>
+
+        <aside class="schema-pane">
+          <app-schema-browser
+            [tables]="tables()"
+            [spatialAvailable]="spatialAvailable()"
+            (tableSelected)="useTable($event)"
+            (snippetSelected)="sqlChange.emit($event)"
+          />
+        </aside>
+    </div>
+  </section>
+}

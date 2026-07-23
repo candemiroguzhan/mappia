@@ -1,0 +1,51 @@
+.ai-tools-panel {
+  width: min(188px, calc(100vw - 32px));
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+
+  h2 {
+    margin: 2px 0 0;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+}
+
+.window-actions,
+.tool-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.eyebrow {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.tool-actions {
+  display: grid;
+  grid-template-columns: 44px;
+}
+
+.tool-button {
+  display: inline-grid;
+  width: 44px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  font-size: 19px;
+  padding: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+}

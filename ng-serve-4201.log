@@ -1,0 +1,36 @@
+
+> duckdb-wasm-geoquery-studio@0.1.0 start
+> ng serve --host 0.0.0.0 --port 4201
+
+
+Warning: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues.
+    
+> Building...
+√ Building...
+Initial chunk files | Names         |  Raw size
+main.js             | main          | 257.92 kB | 
+styles.css          | styles        |  96.79 kB | 
+
+                    | Initial total | 354.71 kB
+
+Application bundle generation complete. [10.812 seconds] - 2026-07-07T12:37:48.265Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4201[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.27:[1m4201[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.17.64.1:[1m4201[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names |  Raw size
+main.js             | main  | 258.11 kB | 
+
+Application bundle generation complete. [2.103 seconds] - 2026-07-07T12:43:01.500Z
+
+Page reload sent to client(s).

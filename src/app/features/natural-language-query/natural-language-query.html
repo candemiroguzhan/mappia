@@ -1,0 +1,22 @@
+<section class="nl-query">
+  <label>
+    <span>{{ 'naturalLanguageQuery' | translate }}</span>
+    <textarea
+      [ngModel]="prompt()"
+      (ngModelChange)="prompt.set($event)"
+      [attr.placeholder]="'queryEntryField' | translate"
+      rows="3"
+    ></textarea>
+  </label>
+
+  <div class="actions">
+    <button type="button" class="glass-button" [disabled]="busy()" (click)="generateSql()">
+      <app-icon library="lucide" [name]="busy() ? 'LoaderCircle' : 'Sparkles'" size="sm" />
+      <span>{{ busy() ? ('generating' | translate) : ('generateSql' | translate) }}</span>
+    </button>
+  </div>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+</section>

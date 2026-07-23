@@ -1,0 +1,41 @@
+<section class="schema">
+  <div class="section-title">
+    <h2>{{ 'tables' | translate }}</h2>
+    <span>{{ tables().length }}</span>
+  </div>
+
+  @if (tables().length === 0) {
+    <p class="empty">{{ 'empty.tables' | translate }}</p>
+  }
+
+  @for (table of tables(); track table.tableName) {
+    <article class="table-entry">
+      <button type="button" class="table-name" (click)="tableSelected.emit(table)">
+        <strong>{{ table.tableName }}</strong>
+        <span>{{ table.rowCount ?? ('unknown' | translate) }} {{ 'rows' | translate }}</span>
+      </button>
+
+      <div class="columns">
+        @for (column of table.columns; track column.name) {
+          <div class="column">
+            <span>{{ column.name }}</span>
+            <code>{{ column.type }}</code>
+          </div>
+        }
+      </div>
+
+      @if (table.geoHints.length > 0) {
+        <div class="hints">
+          <strong>{{ 'geoparquetHints' | translate }}</strong>
+          @for (hint of table.geoHints; track hint) {
+            <button type="button" (click)="snippetSelected.emit(hint)">{{ hint }}</button>
+          }
+        </div>
+      }
+    </article>
+  }
+
+  @if (spatialAvailable() === false) {
+    <p class="notice">{{ 'spatialUnavailable' | translate }}</p>
+  }
+</section>

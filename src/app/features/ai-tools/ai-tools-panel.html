@@ -1,0 +1,19 @@
+<section class="glass-panel ai-tools-panel">
+  <header>
+    <div>
+      <span class="eyebrow">{{ 'tools' | translate }}</span>
+      <h2>{{ 'aiTools' | translate }}</h2>
+    </div>
+    <div class="window-actions">
+      <button type="button" class="window-icon-button" [attr.aria-label]="'close' | translate" [attr.title]="'close' | translate" (click)="close.emit()">
+        <app-icon library="lucide" name="X" size="sm" />
+      </button>
+    </div>
+  </header>
+
+  <div class="tool-actions">
+    <button type="button" class="tool-button" [attr.aria-label]="'sqlQueryTool' | translate" [attr.title]="'sqlQueryTool' | translate" (click)="openSql()">
+      <app-icon library="lucide" name="SquareTerminal" size="sm" />
+    </button>
+  </div>
+</section>
