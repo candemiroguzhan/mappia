@@ -1,86 +1,464 @@
-# mappia / DuckSpatial Workbench
+# Mappia 🌐
 
-Modern browser-native geospatial workbench built with Angular standalone components, Signals, MapLibre GL JS, DuckDB WASM, Monaco Editor and geotiff.js.
+![Stars](https://img.shields.io/github/stars/candemiroguzhan/mappia?style=flat-square)
+![Forks](https://img.shields.io/github/forks/candemiroguzhan/mappia?style=flat-square)
+![Issues](https://img.shields.io/github/issues/candemiroguzhan/mappia?style=flat-square)
+![Contributors](https://img.shields.io/github/contributors/candemiroguzhan/mappia?style=flat-square)
+![License](https://img.shields.io/github/license/candemiroguzhan/mappia?style=flat-square)
+![Angular](https://img.shields.io/badge/Angular-Standalone-DD0031?style=flat-square\&logo=angular)
+![DuckDB](https://img.shields.io/badge/DuckDB-WASM-FFF000?style=flat-square\&logo=duckdb)
+![MapLibre](https://img.shields.io/badge/MapLibre-GL_JS-396CB2?style=flat-square)
 
-## Supported Formats
+A modern browser-native geospatial workbench for loading, querying, inspecting and visualizing spatial datasets directly in the browser.
 
-- CSV: registered in DuckDB WASM and listed as a table-backed layer.
-- Parquet: registered in DuckDB WASM and listed as a table-backed layer.
-- GeoParquet: registered in DuckDB WASM. Geometry visualization depends on query output exposing WKT, GeoJSON or coordinate columns.
-- GeoJSON / JSON: added directly to MapLibre as a vector layer.
-- TIFF / GeoTIFF / COG: metadata is read with geotiff.js and registered as a COG layer.
-- Remote COG URL: metadata read is available when the remote server supports browser CORS/range access.
+Built with Angular standalone components, Signals, DuckDB WASM, DuckDB Spatial, MapLibre GL JS, Monaco Editor and geotiff.js, Mappia provides a lightweight GIS environment without requiring a dedicated backend service.
 
-## COG Limitations
+> **Note:** Badge URLs assume the GitHub repository is `https://github.com/candemiroguzhan/mappia`. Update the badge URLs if the repository uses a different name.
 
-The current COG phase reads metadata only: width, height, band count, bounding box, projection and file size for local files. Local COG files are not yet served as map tiles, so they are not rendered as MapLibre raster tile sources in this phase.
+## ✨ Features
 
-If the COG projection is not EPSG:4326 or EPSG:3857, the UI warns that reprojection is required for correct map placement.
+* 📂 Load local geospatial and tabular datasets
+* 🦆 Register CSV, Parquet and GeoParquet files in DuckDB WASM
+* 🧮 Execute SQL queries directly in the browser
+* 🗺️ Visualize GeoJSON and compatible query results with MapLibre GL JS
+* 🛰️ Inspect TIFF, GeoTIFF and Cloud Optimized GeoTIFF metadata
+* 🌐 Read remote COG metadata when CORS and HTTP range requests are supported
+* 🧾 Write and execute SQL using the integrated Monaco Editor
+* 💬 Generate basic SQL from Turkish natural-language prompts
+* 📚 Manage datasets through a unified layer manager
+* 📏 Measure distance and area
+* ✏️ Draw points, lines and polygons
+* 🔍 Zoom to individual layers or fit all layers
+* 🔒 Process supported local datasets entirely in the browser
 
-## GeoParquet Notes
+## 🧪 Technology
 
-GeoParquet files are registered through DuckDB WASM. If the DuckDB spatial extension loads, generated snippets can convert WKB geometry into WKT or GeoJSON. Query results with columns named `geometry`, `geom`, `wkt`, `geojson` or `coordinates` are previewed on the map.
+* **Angular** — Application framework
+* **Angular Standalone Components** — Modular component architecture
+* **Angular Signals** — Reactive state management
+* **TypeScript** — Application code
+* **DuckDB WASM** — Browser-native analytical database
+* **DuckDB Spatial** — Spatial SQL functions and geometry processing
+* **MapLibre GL JS** — Interactive map rendering
+* **Monaco Editor** — Integrated SQL editor
+* **geotiff.js** — TIFF, GeoTIFF and COG metadata parsing
+* **WebAssembly** — Browser-native data processing
+* **Web Workers** — Background processing
+* **HTML5 File API** — Local dataset access
 
-## SQL Examples
+## 📦 Supported Formats
+
+| Format         | Current Support                                         |
+| -------------- | ------------------------------------------------------- |
+| CSV            | Registered as a DuckDB table                            |
+| Parquet        | Registered as a DuckDB table                            |
+| GeoParquet     | Registered in DuckDB WASM with spatial-query support    |
+| GeoJSON        | Rendered directly as a MapLibre vector layer            |
+| JSON           | Loaded when compatible with GeoJSON structures          |
+| TIFF           | Raster metadata inspection                              |
+| GeoTIFF        | Spatial raster metadata inspection                      |
+| COG            | Metadata inspection                                     |
+| Remote COG URL | Metadata inspection with CORS and range-request support |
+
+## 🗺️ Vector Data
+
+GeoJSON datasets are added directly to MapLibre as vector sources.
+
+Supported geometry types include:
+
+* Point
+* MultiPoint
+* LineString
+* MultiLineString
+* Polygon
+* MultiPolygon
+* GeometryCollection
+
+Vector layers support:
+
+* Visibility control
+* Opacity control
+* Rename
+* Remove
+* Zoom to extent
+* Basic geometry styling
+
+CSV, Parquet and GeoParquet datasets are registered as DuckDB-backed layers.
+
+Spatial query results can be previewed when they expose recognizable columns such as:
+
+* `geometry`
+* `geom`
+* `wkt`
+* `geojson`
+* `coordinates`
+* `longitude` and `latitude`
+* `lon` and `lat`
+* `x` and `y`
+
+## 🛰️ Raster and COG Support
+
+Mappia uses `geotiff.js` to inspect TIFF, GeoTIFF and Cloud Optimized GeoTIFF datasets.
+
+Currently extracted metadata may include:
+
+* Raster width
+* Raster height
+* Band count
+* Bounding box
+* Projection information
+* GeoTIFF keys
+* File size
+* Local or remote source information
+
+### Current COG Limitations
+
+The current COG implementation focuses on metadata inspection.
+
+Local COG files are not yet exposed as raster tile sources and therefore are not rendered directly as MapLibre raster layers.
+
+Remote COG access requires the source server to support:
+
+* Cross-Origin Resource Sharing
+* HTTP byte-range requests
+* Browser-accessible response headers
+
+Correct map placement may require reprojection when the raster does not use:
+
+* `EPSG:4326`
+* `EPSG:3857`
+
+The application displays a warning when reprojection is required.
+
+## 🧮 SQL Workbench
+
+The integrated Monaco Editor allows SQL queries to be executed against datasets registered in DuckDB WASM.
+
+### Preview Records
 
 ```sql
-SELECT * FROM "table_name" LIMIT 100;
+SELECT *
+FROM "table_name"
+LIMIT 100;
 ```
 
-```sql
-SELECT COUNT(*) AS row_count FROM "table_name";
-```
+### Count Records
 
 ```sql
-SELECT *, ST_AsGeoJSON(ST_GeomFromWKB(geometry)) AS geojson
+SELECT COUNT(*) AS row_count
+FROM "table_name";
+```
+
+### Filter Records
+
+```sql
+SELECT *
+FROM "table_name"
+WHERE area > 1000
+LIMIT 1000;
+```
+
+### Calculate an Average
+
+```sql
+SELECT AVG(area) AS average_area
+FROM "table_name";
+```
+
+### Convert WKB Geometry to GeoJSON
+
+```sql
+SELECT
+    *,
+    ST_AsGeoJSON(ST_GeomFromWKB(geometry)) AS geojson
 FROM "table_name"
 LIMIT 1000;
 ```
 
-## Natural Language Query
+### Convert WKB Geometry to WKT
 
-Natural language query currently uses a local rule-based provider. It can generate simple SQL for prompts such as:
+```sql
+SELECT
+    *,
+    ST_AsText(ST_GeomFromWKB(geometry)) AS wkt
+FROM "table_name"
+LIMIT 1000;
+```
 
-- `ilk 100 kaydı göster`
-- `count al`
-- `alan ortalamasını hesapla`
-- `1000 metrekareden büyük kayıtları getir`
-- `yüksekliği 10'dan büyük binaları getir`
+## 💬 Natural-Language Query
 
-The adapter interface is ready for OpenAI or Ollama-backed providers, but those providers are placeholders until configured.
+Mappia includes an experimental natural-language query provider.
 
-## Layer Manager
+The current implementation uses local rule-based processing to convert supported Turkish prompts into basic SQL statements.
 
-Every uploaded dataset is registered as a layer. GeoJSON layers are synchronized with MapLibre and support:
+Example prompts:
 
-- visibility toggle
-- opacity slider
-- rename
-- remove from map and layer list
-- zoom to layer
+```text
+ilk 100 kaydı göster
+```
 
-CSV, Parquet, GeoParquet and COG layers are listed with metadata. COG map rendering is a later phase.
+```text
+count al
+```
 
-## Map Tools
+```text
+alan ortalamasını hesapla
+```
 
-The tools panel supports:
+```text
+1000 metrekareden büyük kayıtları getir
+```
 
-- Pan / Select
-- Measure Distance
-- Measure Area
-- Draw Point
-- Draw Line
-- Draw Polygon
-- Clear Drawings
-- SQL Query Tool
-- Fit All Layers
-- Reset View
+```text
+yüksekliği 10'dan büyük binaları getir
+```
 
-Measurement output is displayed as a floating glass tooltip over the map.
+The provider abstraction is prepared for future integrations such as:
 
-## Build
+* OpenAI
+* Ollama
+* Schema-aware SQL generation
+* Spatial SQL generation
+* Query validation
+* Query explanation
+
+OpenAI and Ollama providers are currently placeholders until configured.
+
+## 🧰 Map Tools
+
+The map toolbar currently supports:
+
+* Pan
+* Select
+* Measure Distance
+* Measure Area
+* Draw Point
+* Draw Line
+* Draw Polygon
+* Clear Drawings
+* SQL Query Tool
+* Fit All Layers
+* Reset View
+
+Measurement results are displayed in a floating glass-style tooltip over the map.
+
+## 📚 Layer Manager
+
+Every imported dataset is registered as a workspace layer.
+
+Depending on the dataset type, a layer may contain:
+
+* DuckDB table information
+* Source file metadata
+* Geometry metadata
+* Raster metadata
+* MapLibre source references
+* Visibility state
+* Opacity state
+* Spatial extent
+* Display name
+
+The layer manager supports:
+
+* Toggle visibility
+* Change opacity
+* Rename layers
+* Remove layers
+* Zoom to layer extent
+* Inspect available metadata
+
+## 📁 Project Structure
+
+```text
+├─ public/
+│  └─ assets/
+├─ src/
+│  ├─ app/
+│  │  ├─ components/
+│  │  ├─ core/
+│  │  ├─ models/
+│  │  ├─ services/
+│  │  ├─ state/
+│  │  ├─ tools/
+│  │  ├─ app.component.ts
+│  │  └─ app.config.ts
+│  ├─ assets/
+│  ├─ environments/
+│  ├─ main.ts
+│  └─ styles.css
+├─ angular.json
+├─ package.json
+├─ tsconfig.json
+└─ README.md
+```
+
+> The actual directory structure may change as the project evolves.
+
+## 📋 Requirements
+
+* Node.js 20 or later
+* npm
+* A modern browser with WebAssembly support
+* Web Worker support
+* WebGL support
+* Internet access for external basemap resources
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/candemiroguzhan/mappia.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd mappia
+```
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Start the development server:
+
+```bash
+npm start
+```
+
+Alternatively:
+
+```bash
+ng serve
+```
+
+Open the application at:
+
+```text
+http://localhost:4200
+```
+
+Create a production build:
+
+```bash
 npm run build
 ```
+
+## ▶️ Usage
+
+1. Start the Angular development server.
+2. Open Mappia in a modern browser.
+3. Import a supported local dataset.
+4. Select the dataset from the layer manager.
+5. Query table-backed datasets using the SQL editor.
+6. Preview compatible spatial query results on the map.
+7. Use the drawing and measurement tools when required.
+8. Manage visibility, opacity and layer extent from the layer panel.
+
+For GeoParquet datasets, use DuckDB Spatial functions to convert WKB geometry into WKT or GeoJSON before attempting map visualization.
+
+## ⚙️ Configuration
+
+Application-level settings are managed through Angular services and configuration files.
+
+Configurable areas may include:
+
+* Basemap style URL
+* Initial map center
+* Initial zoom level
+* DuckDB WASM bundle
+* DuckDB Spatial extension loading
+* Query-result row limits
+* Geometry-column detection
+* Natural-language query provider
+* Remote AI provider settings
+* Layer styling defaults
+
+External AI providers should not be enabled without securely managing API credentials.
+
+## ⚠️ Current Limitations
+
+* Local COG files are not yet rendered as raster map layers
+* Raster reprojection is not yet implemented
+* GeoParquet visualization depends on DuckDB Spatial availability
+* Geometry detection currently relies on supported column names
+* Natural-language SQL generation is rule based
+* Styling options are limited
+* Dataset editing is not yet supported
+* Dataset export is not yet supported
+* Large datasets remain subject to browser memory limits
+* Spatial analysis workflows are still under development
+
+## 🛣️ Roadmap
+
+Planned improvements include:
+
+* Full COG rendering
+* Raster band visualization
+* Raster statistics and histograms
+* Automatic GeoParquet geometry detection
+* GeoParquet metadata parsing
+* Schema-aware natural-language SQL
+* OpenAI integration
+* Ollama integration
+* Query history
+* Workspace persistence
+* Dataset export
+* Attribute-table filtering
+* Vector styling controls
+* Coordinate-system inspection
+* Client-side format conversion
+* Additional DuckDB Spatial workflows
+* Multi-layer spatial analysis
+
+## 🔒 Privacy
+
+Supported local datasets are processed directly in the browser and do not need to be uploaded to an application server.
+
+External network communication may still occur when:
+
+* Loading basemap resources
+* Opening remote COG URLs
+* Accessing externally hosted map services
+* Using future external AI providers
+
+## 🤝 Contributing
+
+Contributions and improvements are welcome.
+
+You can:
+
+* Open issues for bugs or feature requests
+* Submit pull requests with fixes or enhancements
+* Improve dataset-format support
+* Add new DuckDB Spatial workflows
+* Improve raster rendering
+* Extend natural-language query providers
+* Improve documentation
+
+Please respect third-party licenses when adding new dependencies.
+
+## 👤 Author
+
+**Oğuzhan CANDEMİR** — Geospatial Software Engineer
+
+GitHub: [@candemiroguzhan](https://github.com/candemiroguzhan)
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+## ⭐ Support
+
+If you find this project useful:
+
+* Star the repository ⭐
+* Share feedback
+* Report bugs
+* Suggest new geospatial workflows
+* Contribute enhancements
+
+Thank you for your support!
